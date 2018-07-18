@@ -1,4 +1,15 @@
-def call_lbm(train_X, train_y, val_X, val_y, test_X):
+import lightgbm as lgb
+import numpy as np
+
+# dataset
+train = pd.read_csv(path_train)
+test = pd.read_csv(path_test)
+
+from sklearn.model_selection import train_test_split
+X_train, val_X, y_train, val_y = train_test_split(Data_final, y_train, test_size = 0.2, random_state = 9)
+
+# general function to create lgbm model with custom parameters
+def call_lgbm(train_X, train_y, val_X, val_y, test_X):
     params = {
         "objective" : "regression_l1",
         "metric" : "rmse",
@@ -29,7 +40,7 @@ def call_lbm(train_X, train_y, val_X, val_y, test_X):
     pred_test_y = (model.predict(test_X, num_iteration=model.best_iteration))
     return pred_test_y, model, evals_result
 
-pred_test, model, evals_result = run_lgb(train_X, train_y, val_X, val_y, val_X)
+pred_test, model, evals_result = call_lgbm(X_train, y_train, val_X, val_y, val_X)
 print("Training Completed")
 
 #Evaluation
@@ -39,6 +50,7 @@ from sklearn.metrics import r2_score
 r2 = r2_score((val_y), (pred_test))
 
 #%%
+# Evaluation of feature importance by the lgb model
 print("Features Importance...")
 gain = model.feature_importance('gain')
 featureimp = pd.DataFrame({'feature':model.feature_name(), 
