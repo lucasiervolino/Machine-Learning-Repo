@@ -39,8 +39,8 @@ entireData = [x_train_final2, x_test_final2]
 entireData = pd.concat(entireData)
 entireData2 = entireData.values.reshape(entireData.values.shape[0], entireData.values.shape[1],1)
 entireData3 = entireData2[16:,:,:] #selects only the sequential part of inputs. 16 mix of categorical and numerical inputs and 40 sequential inputs.
-X_entireData = entireData3[:,:-1,:]
-Y_entireData = entireData3[:,1:,:]
+X_entireData = entireData3[:,:-1,:] 
+Y_entireData = entireData3[:,1:,:] # y is shifted in 1 cell
 
 seed = 9
 
