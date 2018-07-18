@@ -3,7 +3,9 @@ import pandas as pd
 
 #loads datasets
 X = pd.read_csv(path_X)
-y = pd.read_csv(path_y)
+
+# X is composed of 16 numerical and categorical features and 40 categorical sequential answers to questions
+# either A, B, C, D, E
 
 #Label encoder dict
 from collections import defaultdict
@@ -36,9 +38,9 @@ x_test_final[int_columns] = x_test_final[int_columns].apply(lambda x: dint[x.nam
 entireData = [x_train_final2, x_test_final2]
 entireData = pd.concat(entireData)
 entireData2 = entireData.values.reshape(entireData.values.shape[0], entireData.values.shape[1],1)
-entireData3 = entireData2[16:,:,:]
-X_entireData = entireData2[:,:-1,:]
-Y_entireData = entireData2[:,1:,:]
+entireData3 = entireData2[16:,:,:] #selects only the sequential part of inputs. 16 mix of categorical and numerical inputs and 40 sequential inputs.
+X_entireData = entireData3[:,:-1,:]
+Y_entireData = entireData3[:,1:,:]
 
 seed = 9
 
@@ -77,7 +79,7 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 
 earlystopping = EarlyStopping(monitor='val_loss', patience=50, verbose=1, mode='auto')
 
-history = model.fit(X_entireData[16:,:,:], Y_entireData[16:,:,:], epochs=200, verbose=2, batch_size=32)
+history = model.fit(X_entireData, Y_entireData, epochs=200, verbose=2, batch_size=32)
 
 
 #second predictive model
