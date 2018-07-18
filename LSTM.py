@@ -1,3 +1,5 @@
+### Stacked LSTM model to predict sequential output on a step-by-step approach
+
 import numpy as np
 import pandas as pd
 
