@@ -48,6 +48,8 @@ print(featureimp[:15])
 #%%
 flist = [x for x in x_train.columns if not x in ['ID','target']]
 
+model.save_model('mode.txt')
+model = lgb.Booster(model_file='mode.txt')
 
 
 
