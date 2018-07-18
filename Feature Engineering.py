@@ -1,5 +1,9 @@
+import pandas as pd
+import numpy as np
 
 #Datasets imported
+dataset_train = pd.read_csv(path_train)
+dataset_test = pd.read_csv(path_test)
 
 #X consists of 3 features
 #Y consists of a single output feature
