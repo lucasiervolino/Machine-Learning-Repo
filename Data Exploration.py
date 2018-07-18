@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 #Datasets imported
 #dataset_train for training
 #dataset_test for testing
+dataset_train = pd.read_csv(path_train)
+dataset_test = pd.read_csv(path_test)
 
 #X consists of 3 features
 #Y consists of a single output feature
@@ -45,12 +47,3 @@ fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax.scatter(dataset_train.x1, dataset_train.x2, dataset_train.y, '.')
 plt.title('Fig.2. Input variables space')
-
-
-
-
-
-
-
-
-
