@@ -14,6 +14,7 @@ dataset_train_x = dataset_train_x.drop(['y'], axis=1)
 dataset_train_y = dataset_train[['y']]
 
 #DATA ENGINEERING
+
 dataset_train_x['mode'] = X_train.mode(axis=1)
 dataset_train_x['sum'] = X_train.sum(axis=1, skipna=True)
 dataset_train_x['mean'] = X_train.mean(axis=1, skipna=True)
@@ -25,7 +26,6 @@ dataset_train_x['max'] = X_train.max(axis=1, skipna=True)
 dataset_train_x['min'] = X_train_nan.min(axis=1, skipna=True)
 dataset_train_x['var'] = X_train_nan.var(axis=1)
 
-
 dataset_train_x['x1x2'] = np.multiply(dataset_train_x.x1,dataset_train_x.x2)
 dataset_train_x['x1x2^2'] = dataset_train_x['x1x2']**2
 dataset_train_x['x1x2^3'] = dataset_train_x['x1x2']**3
@@ -34,7 +34,7 @@ dataset_train_x['x1x2x3'] = np.multiply(dataset_train_x['x1x2'],dataset_train_x[
 dataset_train_x['invx2'] = (dataset_train_x['x2']**(-1))
 dataset_train_x['loginvx2'] = np.log(abs(dataset_train_x['invx2']))
 
-
+# creating sample new variable from observating x1x2 interaction and PDF
 dataset_train_x['newx'] = np.array((dataset_train.x2*2000)-dataset_train.x1.values)
 dataset_train_x['newx2'] = (dataset_train_x['newx']**2)
 dataset_train_x['newx3'] = (dataset_train_x['newx']**3)
