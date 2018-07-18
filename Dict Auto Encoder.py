@@ -12,7 +12,6 @@ dcat = defaultdict(LabelEncoder)
 dint = defaultdict(LabelEncoder)
 
 # remember to change categorical data mix with nums
-
 # keep an eye for discrepancies on dataframes dtypes
 
 cat_columns = x_test.select_dtypes(['object']).columns.tolist() #gets all the columns that are objects
@@ -34,8 +33,3 @@ x_test[int_columns] = x_test[int_columns].apply(lambda x: dint[x.name].transform
 
 # Inverse the encoded variables given that the column names are the same
 #x_train.apply(lambda x: d[x.name].inverse_transform(x))
-
-
-
-
-
