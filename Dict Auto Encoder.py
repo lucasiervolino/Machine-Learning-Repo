@@ -1,3 +1,5 @@
+### LabelEncoder dict structure to apply to labeled dataframes
+
 import pandas as pd
 import numpy as np
 from collections import defaultdict
