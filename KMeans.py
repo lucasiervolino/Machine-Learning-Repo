@@ -1,4 +1,4 @@
-#KMeans used for clustering data
+#KMeans used for clustering input data and adding it to explanatory new features
 #aggregates new features
 from sklearn.cluster import KMeans
 
@@ -10,6 +10,3 @@ for ncl in range(2,5):
     x_test['kmeans_cluster_'+str(ncl)] = cls.predict(x_test[flist].values)
     flist_kmeans.append('kmeans_cluster_'+str(ncl))
 print(flist_kmeans)
-
-
-
